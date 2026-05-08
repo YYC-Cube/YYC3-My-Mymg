@@ -42,7 +42,10 @@ export default defineConfig({
             output: {
                 manualChunks: function (id) {
                     if (id.includes('node_modules')) {
-                        if (id.includes('react-dom') || id.includes('react/')) {
+                        if (id.includes('react-dom') || id.includes('scheduler')) {
+                            return 'vendor-react-dom';
+                        }
+                        if (id.includes('/react/') || id.includes('react@')) {
                             return 'vendor-react';
                         }
                         if (id.includes('recharts') || id.includes('d3-')) {
@@ -60,8 +63,20 @@ export default defineConfig({
                         if (id.includes('@mui') || id.includes('@emotion')) {
                             return 'vendor-mui';
                         }
-                        if (id.includes('monaco-editor')) {
+                        if (id.includes('monaco-editor') || id.includes('@monaco-editor')) {
                             return 'vendor-monaco';
+                        }
+                        if (id.includes('react-dnd')) {
+                            return 'vendor-dnd';
+                        }
+                        if (id.includes('react-router') || id.includes('@remix')) {
+                            return 'vendor-router';
+                        }
+                        if (id.includes('zustand') || id.includes('immer')) {
+                            return 'vendor-state';
+                        }
+                        if (id.includes('recharts') === false && (id.includes('date-fns') || id.includes('dayjs'))) {
+                            return 'vendor-date';
                         }
                     }
                 },

@@ -71,47 +71,56 @@ My-mgmt/
 ├── src/app/
 │   ├── components/               # 组件库（核心）
 │   │   ├── cyberpunk-standalone.tsx   # 主入口 + 39 页面路由 (React.lazy)
-│   │   ├── app-context.tsx            # 全局状态 (通知/主题/布局)
-│   │   ├── ai-model-context.tsx       # AI 模型上下文
-│   │   ├── i18n-context.tsx           # 国际化 (zh-CN / en-US)
 │   │   │
-│   │   ├── task-board-page.tsx        # 任务看板 (Kanban/List/Stats)
-│   │   ├── task-store.ts              # Task Zustand store + types
-│   │   ├── model-settings.tsx         # AI 模型配置面板
-│   │   ├── model-settings-types.ts    # 共享类型 (ProviderDef/ModelDef/...)
-│   │   ├── provider-card.tsx          # Provider 卡片组件
-│   │   ├── diagnostics-panel.tsx      # 智能诊断面板
-│   │   ├── smart-form-system.tsx      # 动态表单引擎
-│   │   ├── left-panel-page.tsx        # 左侧导航面板
+│   │   ├── pages/                     # 📂 领域分组页面 (39 pages)
+│   │   │   ├── dashboard/    (3)      # 数据驾驶舱
+│   │   │   ├── ai/           (4)      # AI 对话 + NLP + 创作
+│   │   │   ├── marketing/    (7)      # 营销全链路
+│   │   │   ├── customer/     (3)      # 客户关系管理
+│   │   │   ├── tasks/        (2)      # 任务看板 + Store
+│   │   │   ├── operations/   (1)      # AIOps 运维
+│   │   │   ├── hr-finance/   (2)      # 薪酬 + 财务
+│   │   │   ├── supply-chain/ (2)      # 采购 + 库存
+│   │   │   ├── integration/  (4)      # 平台集成
+│   │   │   ├── profile/      (2)      # 个人中心
+│   │   │   ├── developer/    (2)      # 开发者工作区
+│   │   │   └── settings/     (5)      # 系统设置
 │   │   │
-│   │   ├── services/                  # 服务层
-│   │   │   ├── ai-proxy-service.ts    # AI 代理 (限流/缓存/多路由)
-│   │   │   ├── git-api-service.ts     # GitHub REST API
-│   │   │   └── edge-proxy-server.ts   # Edge Function 代理
+│   │   ├── core/              (15)    # 📂 共享核心组件
+│   │   │   ├── neon-card.tsx           # 霓虹卡片 (全局复用)
+│   │   │   ├── cyber-tooltip.tsx       # 赛博提示
+│   │   │   ├── activity-log.tsx        # 活动日志
+│   │   │   └── ... (12 more)
 │   │   │
-│   │   ├── hooks/                     # 自定义 Hooks
-│   │   ├── panels/                    # 面板组件 (6 个)
-│   │   └── ui/                        # UI 基础组件 (50+)
+│   │   ├── context/           (6)     # 📂 全局上下文
+│   │   │   ├── app-context.tsx         # 全局状态 (通知/主题/布局)
+│   │   │   ├── ai-model-context.tsx    # AI 模型上下文
+│   │   │   ├── auth-context.tsx        # 路由权限守卫
+│   │   │   └── ... (3 more)
+│   │   │
+│   │   ├── integrations/     (5)      # 📂 YYC³ 生态集成
+│   │   ├── services/                   # 服务层 (AI Proxy/Git/Edge)
+│   │   ├── hooks/                       # 自定义 Hooks
+│   │   ├── panels/                      # 面板组件 (6 个)
+│   │   ├── settings/                    # 设置子面板 (9 个)
+│   │   └── ui/                          # shadcn/ui 基础组件 (50+)
 │   │
 │   ├── config/                   # 配置文件
-│   └── locales/                  # 国际化翻译文件
+│   └── locales/                  # 国际化翻译文件 (zh-CN / en-US)
 │
 ├── tests/                        # 测试文件
 │   ├── components/               # 组件测试
+│   ├── contexts/                 # 上下文测试
 │   ├── hooks/                    # Hook 测试
-│   └── services/                 # 服务测试 (311 tests)
+│   ├── pages/                    # 页面测试
+│   ├── stores/                   # Store 测试
+│   ├── services/                 # 服务测试
+│   └── e2e/                      # E2E 测试 (Playwright)
 │
+├── .github/workflows/            # CI/CD (5 jobs: lint+test+build+e2e+deploy)
 ├── docs/                         # 项目文档
-│   ├── architecture/             # 架构文档
-│   ├── standards/                # 编码标准
-│   ├── guides/                   # 开发指南
-│   ├── features/                 # 功能文档
-│   └── reports/                  # 分析报告
-│
-├── guidelines/                   # 开发指南 (P1 功能)
-├── package.json
-├── vite.config.ts                # Vite 配置 (manualChunks)
-└── vitest.config.ts              # 测试配置
+│   └── my-mgmt-trae-ai-20260508/ # YYC³ AI 审核与执行文档
+└── package.json
 ```
 
 ---
@@ -131,10 +140,11 @@ My-mgmt/
 
 | Store | 文件 | 用途 |
 |-------|------|------|
-| AppContext | `app-context.tsx` | 通知、布局、主题 |
-| AIModelContext | `ai-model-context.tsx` | AI 模型选择、配置 |
-| I18nContext | `i18n-context.tsx` | 国际化 |
-| useTaskStore | `task-store.ts` | 任务看板 (Zustand + localStorage persist) |
+| AppContext | `context/app-context.tsx` | 通知、布局、主题 |
+| AIModelContext | `context/ai-model-context.tsx` | AI 模型选择、配置 |
+| AuthContext | `context/auth-context.tsx` | RBAC 权限守卫 |
+| I18nContext | `context/i18n-context.tsx` | 国际化 |
+| useTaskStore | `pages/tasks/task-store.ts` | 任务看板 (Zustand + localStorage persist) |
 | useSettingsStore | `stores/useSettingsStore.ts` | 全局设置 (Zustand) |
 
 ### 模块化拆分
@@ -192,12 +202,15 @@ pnpm test:e2e          # E2E 测试 (Playwright)
 
 | 指标               | 当前值        | 说明                  |
 | ------------------ | ------------- | --------------------- |
-| 主 Chunk           | 409 KB (gzip 110 KB) | React.lazy 分割 |
+| 主 Chunk           | 407 KB (gzip 108 KB) | React.lazy 分割 |
+| Vendor 拆分        | 11 chunks     | react/react-dom/charts/motion/icons/radix/dnd/router/state/date |
 | 构建 39 页面 chunk | 3-24 KB/页    | 按需加载              |
-| 构建时间           | ~2.1s         | 2881 modules          |
+| 构建时间           | ~2.0s         | 2881 modules          |
 | TypeScript 编译    | 0 errors      | 严格模式              |
 | ESLint             | 0 errors      | 92 warnings (非阻塞)  |
 | 测试               | 427 passed    | 20 files / 7.4s       |
+| E2E 测试           | 9 cases       | Playwright chromium   |
+| CI/CD              | 5 jobs        | lint→test→build→e2e→deploy |
 
 ---
 
@@ -207,7 +220,10 @@ pnpm test:e2e          # E2E 测试 (Playwright)
 - ✅ AI 代理三模式: direct/proxy/hybrid (VITE_AI_PROXY_MODE)
 - ✅ AI 代理限流 (Token Bucket)
 - ✅ 请求签名验证
+- ✅ CSP 安全策略 (Content-Security-Policy + 6项安全头)
+- ✅ 路由级权限守卫 (RBAC: admin/editor/viewer)
 - ✅ XSS 防护 (React 内置)
+- ✅ Frame 嵌入防护 (X-Frame-Options: DENY)
 - ✅ 通知数组上限 (50 条)
 - ⚠️ 生产环境需部署后端代理
 
