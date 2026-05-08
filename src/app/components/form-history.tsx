@@ -11,7 +11,7 @@ import {
 } from 'lucide-react'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 
-import { NeonCard } from './neon-card'
+import { NeonCard } from './core/neon-card'
 import { FORM_STORAGE_KEY, formTemplates } from './smart-form-system'
 
 // ==========================================

@@ -25,8 +25,8 @@ import { AnimatePresence, motion } from 'motion/react'
 import { useState } from 'react'
 
 import { useSettingsStore } from '../../stores/useSettingsStore'
-import { useI18n } from '../i18n-context'
-import { useThemeSwitcher } from '../theme-switcher-context'
+import { useI18n } from '../context/i18n-context'
+import { useThemeSwitcher } from '../context/theme-switcher-context'
 
 import { usePanelStore } from './panel-store'
 

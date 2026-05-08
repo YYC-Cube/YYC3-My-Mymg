@@ -5,7 +5,7 @@ import {
     INITIAL_TASKS,
     type Task,
     useTaskStore,
-} from '../../src/app/components/task-store'
+} from '../../src/app/components/pages/tasks/task-store'
 
 describe('TaskStore — Types & Constants', () => {
   it('should export valid INITIAL_TASKS', () => {

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { useTaskStore } from '../../src/app/components/task-store'
+import { useTaskStore } from '../../src/app/components/pages/tasks/task-store'
 
 describe('DashboardPage — Data Integration', () => {
   it('should compute correct task stats from store', () => {

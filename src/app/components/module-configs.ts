@@ -35,7 +35,7 @@ import {
     Zap,
 } from 'lucide-react'
 
-import type { ModulePageConfig } from './module-placeholder-page'
+import type { ModulePageConfig } from './core/module-placeholder-page'
 
 
 export const MODULE_CONFIGS: Record<string, ModulePageConfig> = {

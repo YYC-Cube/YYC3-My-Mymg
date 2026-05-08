@@ -45,9 +45,9 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 
 import { useSettingsStore } from '../stores/useSettingsStore'
 
-import { CodeEditor } from './code-editor'
+import { useI18n } from './context/i18n-context'
 import { useThemeColors } from './hooks/use-theme-colors'
-import { useI18n } from './i18n-context'
+import { CodeEditor } from './pages/developer/code-editor'
 import {
   AIAssistantPanel,
   EditorQuickActions,

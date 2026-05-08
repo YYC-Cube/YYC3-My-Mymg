@@ -1,7 +1,7 @@
 import { act, renderHook } from '@testing-library/react'
 import { beforeEach, describe, expect, it } from 'vitest'
 
-import { I18nProvider, useI18n } from '../../src/app/components/i18n-context'
+import { I18nProvider, useI18n } from '../../src/app/components/context/i18n-context'
 
 function wrapper({ children }: { children: React.ReactNode }) {
   return <I18nProvider>{children}</I18nProvider>

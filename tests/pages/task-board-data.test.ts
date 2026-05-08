@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it } from 'vitest'
 
-import { type Task, type TaskStatus, useTaskStore } from '../../src/app/components/task-store'
+import { type Task, type TaskStatus, useTaskStore } from '../../src/app/components/pages/tasks/task-store'
 
 describe('TaskBoardPage — Data Integration', () => {
   beforeEach(() => {

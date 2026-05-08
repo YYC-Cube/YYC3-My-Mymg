@@ -23,7 +23,7 @@ import {
 } from 'lucide-react'
 import { useCallback, useRef, useState } from 'react'
 
-import { NeonCard } from './neon-card'
+import { NeonCard } from './core/neon-card'
 import { CUSTOM_TEMPLATES_KEY, type FieldDef, type FieldType } from './smart-form-system'
 
 // ==========================================

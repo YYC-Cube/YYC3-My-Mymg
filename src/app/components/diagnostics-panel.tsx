@@ -13,7 +13,7 @@ import {
 } from 'lucide-react'
 import { useMemo, useState } from 'react'
 
-import { useI18n } from './i18n-context'
+import { useI18n } from './context/i18n-context'
 
 import type { DiagnosticResult, ProviderDef } from './model-settings-types'
 

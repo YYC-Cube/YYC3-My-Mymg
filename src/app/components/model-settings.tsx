@@ -23,10 +23,10 @@ import {
 } from 'lucide-react'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
-import { type AIModel, useAIModel } from './ai-model-context'
+import { type AIModel, useAIModel } from './context/ai-model-context'
+import { useI18n } from './context/i18n-context'
 import { SmartDiagnosticsPanel } from './diagnostics-panel'
 import { useThemeTokens } from './hooks/use-theme-tokens'
-import { useI18n } from './i18n-context'
 import { CopyButton, ProviderCard } from './provider-card'
 
 import type {

@@ -70,8 +70,8 @@ import {
     YAxis,
 } from 'recharts'
 
-import { type SharedContact, useContacts } from './contacts-context'
-import { useI18n } from './i18n-context'
+import { type SharedContact, useContacts } from './context/contacts-context'
+import { useI18n } from './context/i18n-context'
 
 // ==========================================
 // YYC³ 号码库 — Number Database Hub

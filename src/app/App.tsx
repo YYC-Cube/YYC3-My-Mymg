@@ -1,18 +1,18 @@
 import { Component, ErrorInfo, ReactNode } from 'react'
 
-import { AIModelProvider } from './components/ai-model-context'
-import { AppProvider, useApp } from './components/app-context'
-import { ContactsProvider } from './components/contacts-context'
+import { AIModelProvider } from './components/context/ai-model-context'
+import { AppProvider, useApp } from './components/context/app-context'
+import { ContactsProvider } from './components/context/contacts-context'
+import { I18nProvider } from './components/context/i18n-context'
+import { ThemeSwitcherProvider } from './components/context/theme-switcher-context'
+import { CyberpunkWidget } from './components/core/cyberpunk-widget'
+import { LiquidGlassWrapper } from './components/core/liquid-glass-wrapper'
+import { PWAInstallPrompt } from './components/core/pwa-install'
 import { CyberpunkStandalone } from './components/cyberpunk-standalone'
-import { CyberpunkWidget } from './components/cyberpunk-widget'
-import { I18nProvider } from './components/i18n-context'
-import { LiquidGlassWrapper } from './components/liquid-glass-wrapper'
-import { PWAInstallPrompt } from './components/pwa-install'
-import { ThemeSwitcherProvider } from './components/theme-switcher-context'
 import { APP_VERSION } from './version'
 
 // Preload all components to prevent dynamic import errors
-import './components/preload-fix'
+import './components/core/preload-fix'
 
 // Version management
 if (typeof window !== 'undefined') {

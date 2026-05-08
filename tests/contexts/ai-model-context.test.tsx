@@ -1,7 +1,7 @@
 import { act, renderHook } from '@testing-library/react'
 import { beforeEach, describe, expect, it } from 'vitest'
 
-import { AIModelProvider, useAIModel } from '../../src/app/components/ai-model-context'
+import { AIModelProvider, useAIModel } from '../../src/app/components/context/ai-model-context'
 
 function wrapper({ children }: { children: React.ReactNode }) {
   return <AIModelProvider>{children}</AIModelProvider>

@@ -39,8 +39,8 @@ import {
     useState,
 } from 'react'
 
-import { useApp } from './app-context'
-import { NeonCard } from './neon-card'
+import { useApp } from './context/app-context'
+import { NeonCard } from './core/neon-card'
 
 // ==========================================
 // YYC³ 智能表单系统 — Smart Form Engine

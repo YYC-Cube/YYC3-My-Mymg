@@ -6,7 +6,7 @@
 
 import { useMemo } from 'react'
 
-import { type ThemeMode, useThemeSwitcher } from '../theme-switcher-context'
+import { type ThemeMode, useThemeSwitcher } from '../context/theme-switcher-context'
 
 /** Complete set of semantic color tokens for a theme. */
 export interface ThemeColors {

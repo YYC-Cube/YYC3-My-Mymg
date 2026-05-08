@@ -61,59 +61,59 @@ import {
 } from 'lucide-react'
 import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react'
 
-import { useAIModel } from './ai-model-context'
-import { type PageId, useApp, useRealtimeSimulation } from './app-context'
-import { ChatInterface } from './chat-interface'
-import { CommandPalette, useCommandPalette } from './command-palette'
-import { DataExportModal } from './data-export-modal'
-import { GlitchText } from './glitch-text'
+import { useAIModel } from './context/ai-model-context'
+import { type PageId, useApp, useRealtimeSimulation } from './context/app-context'
+import { useI18n } from './context/i18n-context'
+import { CommandPalette, useCommandPalette } from './core/command-palette'
+import { DataExportModal } from './core/data-export-modal'
+import { GlitchText } from './core/glitch-text'
+import { NeonCard } from './core/neon-card'
+import { NotificationDrawer } from './core/notification-drawer'
+import { OnboardingTutorial } from './core/onboarding-tutorial'
+import { PageTransition } from './core/page-transition'
+import { ParticleCanvas } from './core/particle-canvas'
+import { ThemeSwitcherButtonCompact } from './core/theme-switcher-button'
 import { getThemeNavColor, useThemeColors } from './hooks/use-theme-colors'
-import { useI18n } from './i18n-context'
 import { ModelSettings } from './model-settings'
-import { NeonCard } from './neon-card'
-import { NotificationDrawer } from './notification-drawer'
-import { OnboardingTutorial } from './onboarding-tutorial'
-import { PageTransition } from './page-transition'
-import { ParticleCanvas } from './particle-canvas'
-import { ThemeSwitcherButtonCompact } from './theme-switcher-button'
+import { ChatInterface } from './pages/ai/chat-interface'
 
-const ActivityLogPage = lazy(() => import('./activity-log').then((m) => ({ default: m.ActivityLogPage })))
-const AIToolsPage = lazy(() => import('./ai-tools-page').then((m) => ({ default: m.AIToolsPage })))
-const AppOverviewPage = lazy(() => import('./app-overview-page').then((m) => ({ default: m.AppOverviewPage })))
-const BrandManagementPage = lazy(() => import('./brand-management-page').then((m) => ({ default: m.BrandManagementPage })))
-const CampaignExecutionPage = lazy(() => import('./campaign-execution-page').then((m) => ({ default: m.CampaignExecutionPage })))
-const ChannelCenterPage = lazy(() => import('./channel-center-page').then((m) => ({ default: m.ChannelCenterPage })))
-const CollabCreationPage = lazy(() => import('./collab-creation-page').then((m) => ({ default: m.CollabCreationPage })))
-const CustomerAcquisitionPage = lazy(() => import('./customer-acquisition-page').then((m) => ({ default: m.CustomerAcquisitionPage })))
-const CustomerCarePage = lazy(() => import('./customer-care-page').then((m) => ({ default: m.CustomerCarePage })))
-const DashboardPage = lazy(() => import('./dashboard-page').then((m) => ({ default: m.DashboardPage })))
-const DataIntegrationPage = lazy(() => import('./data-integration-page').then((m) => ({ default: m.DataIntegrationPage })))
-const DecisionSupportPage = lazy(() => import('./decision-support-page').then((m) => ({ default: m.DecisionSupportPage })))
+const ActivityLogPage = lazy(() => import('./core/activity-log').then((m) => ({ default: m.ActivityLogPage })))
+const AIToolsPage = lazy(() => import('./pages/ai/ai-tools-page').then((m) => ({ default: m.AIToolsPage })))
+const AppOverviewPage = lazy(() => import('./pages/dashboard/app-overview-page').then((m) => ({ default: m.AppOverviewPage })))
+const BrandManagementPage = lazy(() => import('./pages/marketing/brand-management-page').then((m) => ({ default: m.BrandManagementPage })))
+const CampaignExecutionPage = lazy(() => import('./pages/marketing/campaign-execution-page').then((m) => ({ default: m.CampaignExecutionPage })))
+const ChannelCenterPage = lazy(() => import('./pages/integration/channel-center-page').then((m) => ({ default: m.ChannelCenterPage })))
+const CollabCreationPage = lazy(() => import('./pages/profile/collab-creation-page').then((m) => ({ default: m.CollabCreationPage })))
+const CustomerAcquisitionPage = lazy(() => import('./pages/marketing/customer-acquisition-page').then((m) => ({ default: m.CustomerAcquisitionPage })))
+const CustomerCarePage = lazy(() => import('./pages/customer/customer-care-page').then((m) => ({ default: m.CustomerCarePage })))
+const DashboardPage = lazy(() => import('./pages/dashboard/dashboard-page').then((m) => ({ default: m.DashboardPage })))
+const DataIntegrationPage = lazy(() => import('./pages/integration/data-integration-page').then((m) => ({ default: m.DataIntegrationPage })))
+const DecisionSupportPage = lazy(() => import('./pages/dashboard/decision-support-page').then((m) => ({ default: m.DecisionSupportPage })))
 const FormHistory = lazy(() => import('./form-history').then((m) => ({ default: m.FormHistory })))
 const FormTemplateBuilder = lazy(() => import('./form-template-builder').then((m) => ({ default: m.FormTemplateBuilder })))
-const InsightsEnhancedPage = lazy(() => import('./insights-enhanced').then((m) => ({ default: m.InsightsEnhancedPage })))
+const InsightsEnhancedPage = lazy(() => import('./pages/customer/insights-enhanced').then((m) => ({ default: m.InsightsEnhancedPage })))
 const LeftPanelPage = lazy(() => import('./left-panel-page').then((m) => ({ default: m.LeftPanelPage })))
-const MarketingAnalyticsPage = lazy(() => import('./marketing-analytics-page').then((m) => ({ default: m.MarketingAnalyticsPage })))
-const MarketingAssetsPage = lazy(() => import('./marketing-assets-page').then((m) => ({ default: m.MarketingAssetsPage })))
-const MarketingStrategyPage = lazy(() => import('./marketing-strategy-page').then((m) => ({ default: m.MarketingStrategyPage })))
-const NLPProcessingPage = lazy(() => import('./nlp-processing-page').then((m) => ({ default: m.NLPProcessingPage })))
+const MarketingAnalyticsPage = lazy(() => import('./pages/marketing/marketing-analytics-page').then((m) => ({ default: m.MarketingAnalyticsPage })))
+const MarketingAssetsPage = lazy(() => import('./pages/marketing/marketing-assets-page').then((m) => ({ default: m.MarketingAssetsPage })))
+const MarketingStrategyPage = lazy(() => import('./pages/marketing/marketing-strategy-page').then((m) => ({ default: m.MarketingStrategyPage })))
+const NLPProcessingPage = lazy(() => import('./pages/ai/nlp-processing-page').then((m) => ({ default: m.NLPProcessingPage })))
 const NumberDatabasePage = lazy(() => import('./number-database').then((m) => ({ default: m.NumberDatabasePage })))
-const ParameterSettingsPage = lazy(() => import('./parameter-settings-page').then((m) => ({ default: m.ParameterSettingsPage })))
-const PlatformIntegrationPage = lazy(() => import('./platform-integration-page').then((m) => ({ default: m.PlatformIntegrationPage })))
-const PlatformSettingsPage = lazy(() => import('./platform-settings-page').then((m) => ({ default: m.PlatformSettingsPage })))
-const ProfilePage = lazy(() => import('./profile-page').then((m) => ({ default: m.ProfilePage })))
-const QuickActionsPage = lazy(() => import('./quick-actions-page').then((m) => ({ default: m.QuickActionsPage })))
-const SettingsPage = lazy(() => import('./settings-page-standalone').then((m) => ({ default: m.SettingsPage })))
-const SmartCreationPage = lazy(() => import('./smart-creation-page').then((m) => ({ default: m.SmartCreationPage })))
+const ParameterSettingsPage = lazy(() => import('./pages/settings/parameter-settings-page').then((m) => ({ default: m.ParameterSettingsPage })))
+const PlatformIntegrationPage = lazy(() => import('./pages/integration/platform-integration-page').then((m) => ({ default: m.PlatformIntegrationPage })))
+const PlatformSettingsPage = lazy(() => import('./pages/settings/platform-settings-page').then((m) => ({ default: m.PlatformSettingsPage })))
+const ProfilePage = lazy(() => import('./pages/profile/profile-page').then((m) => ({ default: m.ProfilePage })))
+const QuickActionsPage = lazy(() => import('./pages/developer/quick-actions-page').then((m) => ({ default: m.QuickActionsPage })))
+const SettingsPage = lazy(() => import('./pages/settings/settings-page-standalone').then((m) => ({ default: m.SettingsPage })))
+const SmartCreationPage = lazy(() => import('./pages/ai/smart-creation-page').then((m) => ({ default: m.SmartCreationPage })))
 const SmartFormPage = lazy(() => import('./smart-form-system').then((m) => ({ default: m.SmartFormPage })))
-const SmartMarketingEnginePage = lazy(() => import('./smart-marketing-engine-page').then((m) => ({ default: m.SmartMarketingEnginePage })))
-const SmartOperationsPage = lazy(() => import('./smart-operations-page').then((m) => ({ default: m.SmartOperationsPage })))
-const TaskBoardPage = lazy(() => import('./task-board-page').then((m) => ({ default: m.TaskBoardPage })))
-const WechatConfigPage = lazy(() => import('./wechat-config-page').then((m) => ({ default: m.WechatConfigPage })))
-const CompensationPage = lazy(() => import('./compensation-page').then((m) => ({ default: m.CompensationPage })))
-const FinancePage = lazy(() => import('./finance-page').then((m) => ({ default: m.FinancePage })))
-const ProcurementPage = lazy(() => import('./procurement-page').then((m) => ({ default: m.ProcurementPage })))
-const InventoryPage = lazy(() => import('./inventory-page').then((m) => ({ default: m.InventoryPage })))
+const SmartMarketingEnginePage = lazy(() => import('./pages/marketing/smart-marketing-engine-page').then((m) => ({ default: m.SmartMarketingEnginePage })))
+const SmartOperationsPage = lazy(() => import('./pages/operations/smart-operations-page').then((m) => ({ default: m.SmartOperationsPage })))
+const TaskBoardPage = lazy(() => import('./pages/tasks/task-board-page').then((m) => ({ default: m.TaskBoardPage })))
+const WechatConfigPage = lazy(() => import('./pages/integration/wechat-config-page').then((m) => ({ default: m.WechatConfigPage })))
+const CompensationPage = lazy(() => import('./pages/hr-finance/compensation-page').then((m) => ({ default: m.CompensationPage })))
+const FinancePage = lazy(() => import('./pages/hr-finance/finance-page').then((m) => ({ default: m.FinancePage })))
+const ProcurementPage = lazy(() => import('./pages/supply-chain/procurement-page').then((m) => ({ default: m.ProcurementPage })))
+const InventoryPage = lazy(() => import('./pages/supply-chain/inventory-page').then((m) => ({ default: m.InventoryPage })))
 
 function PageLoader() {
   const tc = useThemeColors()

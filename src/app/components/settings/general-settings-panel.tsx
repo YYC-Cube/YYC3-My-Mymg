@@ -15,9 +15,9 @@ import { Code, Globe, Palette, Zap } from 'lucide-react'
 import { motion } from 'motion/react'
 
 import { useSettingsStore } from '../../stores/useSettingsStore'
+import { useI18n } from '../context/i18n-context'
+import { useThemeSwitcher } from '../context/theme-switcher-context'
 import { useThemeColors } from '../hooks/use-theme-colors'
-import { useI18n } from '../i18n-context'
-import { useThemeSwitcher } from '../theme-switcher-context'
 
 import type { Language } from '../../types/settings'
 
