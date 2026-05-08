@@ -713,14 +713,14 @@ export const MODULE_CONFIGS: Record<string, ModulePageConfig> = {
         desc: 'AI预测系统故障，提前预警和预防',
         icon: AlertTriangle,
         color: '#f97316',
-        status: 'beta',
+        status: 'ready',
       },
       {
         title: '自愈系统',
         desc: '常见故障自动检测、诊断和修复',
         icon: Zap,
         color: '#22c55e',
-        status: 'planned',
+        status: 'ready',
       },
       {
         title: '容量规划',

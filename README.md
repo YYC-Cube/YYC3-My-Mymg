@@ -22,7 +22,7 @@
 - 💬 **智能客户关怀**: 全生命周期客户关系管理
 - 🔧 **开发者工作区**: Monaco 代码编辑器 + Git 集成 + 文件浏览器
 - 📱 **响应式设计**: 支持桌面端和移动端
-- ⚡ **高性能架构**: React.lazy 页面分割 + Zustand 状态管理 + 407KB 主 chunk
+- ⚡ **高性能架构**: React.lazy 页面分割 + Zustand 状态管理 + 409KB 主 chunk
 
 ---
 
@@ -70,7 +70,7 @@ npx tsc --noEmit
 My-mgmt/
 ├── src/app/
 │   ├── components/               # 组件库（核心）
-│   │   ├── cyberpunk-standalone.tsx   # 主入口 + 35 页面路由 (React.lazy)
+│   │   ├── cyberpunk-standalone.tsx   # 主入口 + 39 页面路由 (React.lazy)
 │   │   ├── app-context.tsx            # 全局状态 (通知/主题/布局)
 │   │   ├── ai-model-context.tsx       # AI 模型上下文
 │   │   ├── i18n-context.tsx           # 国际化 (zh-CN / en-US)
@@ -120,12 +120,12 @@ My-mgmt/
 
 ### 页面路由架构
 
-项目使用 **React.lazy + Suspense** 实现 35 个页面的按需加载：
+项目使用 **React.lazy + Suspense** 实现 39 个页面的按需加载：
 
 - 主入口: `cyberpunk-standalone.tsx`
 - 懒加载包装: `<Suspense fallback={<PageLoader />}>`
-- 代码分割: Vite 自动生成独立 chunk（34 个页面 chunk）
-- 主 chunk: **407 KB** (gzip 109 KB)
+- 代码分割: Vite 自动生成独立 chunk（38 个页面 chunk）
+- 主 chunk: **409 KB** (gzip 110 KB)
 
 ### 状态管理
 
@@ -178,13 +178,13 @@ My-mgmt/
 ## 🧪 测试
 
 ```bash
-pnpm test              # 运行全部测试 (376 tests, 17 files)
+pnpm test              # 运行全部测试 (427 tests, 20 files)
 pnpm test:watch        # 监听模式
 pnpm test:coverage     # 覆盖率报告
 pnpm test:e2e          # E2E 测试 (Playwright)
 ```
 
-**当前状态**: 17 test files, 376 tests, 0 failures
+**当前状态**: 20 test files, 427 tests, 0 failures
 
 ---
 
@@ -192,18 +192,19 @@ pnpm test:e2e          # E2E 测试 (Playwright)
 
 | 指标               | 当前值        | 说明                  |
 | ------------------ | ------------- | --------------------- |
-| 主 Chunk           | 407 KB (gzip 109 KB) | React.lazy 分割 |
-| 构建 35 页面 chunk | 3-24 KB/页    | 按需加载              |
-| 构建时间           | ~2.0s         | 2881 modules          |
+| 主 Chunk           | 409 KB (gzip 110 KB) | React.lazy 分割 |
+| 构建 39 页面 chunk | 3-24 KB/页    | 按需加载              |
+| 构建时间           | ~2.1s         | 2881 modules          |
 | TypeScript 编译    | 0 errors      | 严格模式              |
-| ESLint             | 0 errors      | 91 warnings (非阻塞)  |
-| 测试               | 376 passed    | 17 files / 7.3s       |
+| ESLint             | 0 errors      | 92 warnings (非阻塞)  |
+| 测试               | 427 passed    | 20 files / 7.4s       |
 
 ---
 
 ## 🔐 安全
 
 - ✅ API Key 本地存储 + UI masking
+- ✅ AI 代理三模式: direct/proxy/hybrid (VITE_AI_PROXY_MODE)
 - ✅ AI 代理限流 (Token Bucket)
 - ✅ 请求签名验证
 - ✅ XSS 防护 (React 内置)
