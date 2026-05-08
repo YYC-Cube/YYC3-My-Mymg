@@ -43,6 +43,10 @@ export const enMessages: Record<string, string> = {
   'nav.group.hrFinance': 'HR & Finance',
   'nav.compensation': 'Compensation',
   'nav.finance': 'Finance',
+  // Supply Chain
+  'nav.group.supplyChain': 'Supply Chain',
+  'nav.procurement': 'Procurement',
+  'nav.inventory': 'Inventory',
   // AI Marketing
   'nav.group.aiMarketing': 'AI Marketing',
   'nav.marketingPlan': 'Marketing Plan',

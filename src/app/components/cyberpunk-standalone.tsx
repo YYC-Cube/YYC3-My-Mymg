@@ -32,6 +32,7 @@ import {
     MessageCircle,
     MessageSquare,
     Mic,
+    Package,
     PenTool,
     Phone,
     PhoneCall,
@@ -45,6 +46,7 @@ import {
     Server,
     Settings,
     Shield,
+    ShoppingCart,
     Star,
     Target,
     TrendingUp,
@@ -110,6 +112,8 @@ const TaskBoardPage = lazy(() => import('./task-board-page').then((m) => ({ defa
 const WechatConfigPage = lazy(() => import('./wechat-config-page').then((m) => ({ default: m.WechatConfigPage })))
 const CompensationPage = lazy(() => import('./compensation-page').then((m) => ({ default: m.CompensationPage })))
 const FinancePage = lazy(() => import('./finance-page').then((m) => ({ default: m.FinancePage })))
+const ProcurementPage = lazy(() => import('./procurement-page').then((m) => ({ default: m.ProcurementPage })))
+const InventoryPage = lazy(() => import('./inventory-page').then((m) => ({ default: m.InventoryPage })))
 
 function PageLoader() {
   const tc = useThemeColors()
@@ -149,6 +153,9 @@ const NAV_LABEL_KEYS: Record<string, string> = {
   // HR & Finance
   compensation: 'nav.compensation',
   finance: 'nav.finance',
+  // Supply Chain
+  procurement: 'nav.procurement',
+  inventory: 'nav.inventory',
   // AI Marketing
   marketingPlan: 'nav.marketingPlan',
   promotionExec: 'nav.promotionExec',
@@ -227,6 +234,14 @@ const navGroups: NavGroup[] = [
     items: [
       { id: 'compensation', label: '薪酬激励管理', icon: Award, color: '#8b5cf6' },
       { id: 'finance', label: '财务管理', icon: DollarSign, color: '#22c55e' },
+    ],
+  },
+  {
+    groupKey: 'supplyChain',
+    labelKey: 'nav.group.supplyChain',
+    items: [
+      { id: 'procurement', label: '采购管理', icon: ShoppingCart, color: '#f97316' },
+      { id: 'inventory', label: '库存管理', icon: Package, color: '#06b6d4' },
     ],
   },
   {
@@ -1407,6 +1422,8 @@ export function CyberpunkStandalone({ onSwitchMode }: { onSwitchMode: () => void
             {activePage === 'dataIntegration' && <DataIntegrationPage />}
             {activePage === 'compensation' && <CompensationPage />}
             {activePage === 'finance' && <FinancePage />}
+            {activePage === 'procurement' && <ProcurementPage />}
+            {activePage === 'inventory' && <InventoryPage />}
             {/* AI Marketing modules */}
             {activePage === 'marketingPlan' && <MarketingStrategyPage />}
             {activePage === 'promotionExec' && <CampaignExecutionPage />}

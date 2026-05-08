@@ -42,6 +42,10 @@ export const zhMessages: Record<string, string> = {
   'nav.group.hrFinance': '人资财务',
   'nav.compensation': '薪酬激励管理',
   'nav.finance': '财务管理',
+  // Supply Chain
+  'nav.group.supplyChain': '供应链',
+  'nav.procurement': '采购管理',
+  'nav.inventory': '库存管理',
   // AI Marketing
   'nav.group.aiMarketing': '智能营销',
   'nav.marketingPlan': '营销方案策划',

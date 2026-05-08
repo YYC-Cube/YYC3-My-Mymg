@@ -41,6 +41,9 @@ export type PageId =
   // HR & Finance (人资财务)
   | 'compensation'
   | 'finance'
+  // Supply Chain (供应链)
+  | 'procurement'
+  | 'inventory'
   // AI Marketing (智能营销)
   | 'marketingPlan'
   | 'promotionExec'

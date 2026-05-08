@@ -82,7 +82,17 @@ interface CacheEntry {
  *
  * Example: PROXY_BASE_URL = "https://api.yourdomain.com/ai-proxy"
  */
-const PROXY_BASE_URL = '__PROXY_BASE_URL__' // Replace with your backend endpoint
+const PROXY_BASE_URL = '__PROXY_BASE_URL__'
+
+const ENV_PROXY_URL = typeof import.meta !== 'undefined'
+  ? (import.meta as unknown as Record<string, Record<string, string>>).env?.VITE_AI_PROXY_URL || ''
+  : ''
+
+const PROXY_MODE = (typeof import.meta !== 'undefined'
+  ? (import.meta as unknown as Record<string, Record<string, Record<string, string>>>).env?.VITE_AI_PROXY_MODE || 'direct'
+  : 'direct') as 'direct' | 'proxy' | 'hybrid'
+
+const EFFECTIVE_PROXY_URL = ENV_PROXY_URL || PROXY_BASE_URL
 
 const PROVIDER_ENDPOINTS: Record<AIProviderType, { chatPath: string; defaultBaseUrl: string }> = {
   mock: { chatPath: '', defaultBaseUrl: '' },
@@ -244,7 +254,8 @@ class AIProxyService {
 
     // Route: proxy server or direct
     let content: string
-    if (PROXY_BASE_URL !== '__PROXY_BASE_URL__') {
+    const useProxy = PROXY_MODE === 'proxy' || (PROXY_MODE === 'hybrid' && EFFECTIVE_PROXY_URL !== '__PROXY_BASE_URL__')
+    if (useProxy && EFFECTIVE_PROXY_URL !== '__PROXY_BASE_URL__') {
       content = await this.callViaProxy(request, config, signal)
     } else {
       content = await this.callDirect(config, messages, signal)
