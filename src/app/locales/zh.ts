@@ -38,6 +38,10 @@ export const zhMessages: Record<string, string> = {
   'nav.wechatConfig': '微信配置',
   'nav.channelCenter': '渠道中心',
   'nav.dataIntegration': '数据集成',
+  // HR & Finance
+  'nav.group.hrFinance': '人资财务',
+  'nav.compensation': '薪酬激励管理',
+  'nav.finance': '财务管理',
   // AI Marketing
   'nav.group.aiMarketing': '智能营销',
   'nav.marketingPlan': '营销方案策划',

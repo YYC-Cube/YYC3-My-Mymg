@@ -39,6 +39,10 @@ export const enMessages: Record<string, string> = {
   'nav.wechatConfig': 'WeChat Config',
   'nav.channelCenter': 'Channel Center',
   'nav.dataIntegration': 'Data Integration',
+  // HR & Finance
+  'nav.group.hrFinance': 'HR & Finance',
+  'nav.compensation': 'Compensation',
+  'nav.finance': 'Finance',
   // AI Marketing
   'nav.group.aiMarketing': 'AI Marketing',
   'nav.marketingPlan': 'Marketing Plan',

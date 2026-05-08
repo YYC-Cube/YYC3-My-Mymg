@@ -38,6 +38,9 @@ export type PageId =
   | 'wechatConfig'
   | 'channelCenter'
   | 'dataIntegration'
+  // HR & Finance (人资财务)
+  | 'compensation'
+  | 'finance'
   // AI Marketing (智能营销)
   | 'marketingPlan'
   | 'promotionExec'

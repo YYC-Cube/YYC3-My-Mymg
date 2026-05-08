@@ -15,6 +15,7 @@ import {
     Cpu,
     Crown,
     Database,
+    DollarSign,
     FileText,
     GitBranch,
     Handshake,
@@ -107,6 +108,8 @@ const SmartMarketingEnginePage = lazy(() => import('./smart-marketing-engine-pag
 const SmartOperationsPage = lazy(() => import('./smart-operations-page').then((m) => ({ default: m.SmartOperationsPage })))
 const TaskBoardPage = lazy(() => import('./task-board-page').then((m) => ({ default: m.TaskBoardPage })))
 const WechatConfigPage = lazy(() => import('./wechat-config-page').then((m) => ({ default: m.WechatConfigPage })))
+const CompensationPage = lazy(() => import('./compensation-page').then((m) => ({ default: m.CompensationPage })))
+const FinancePage = lazy(() => import('./finance-page').then((m) => ({ default: m.FinancePage })))
 
 function PageLoader() {
   const tc = useThemeColors()
@@ -143,6 +146,9 @@ const NAV_LABEL_KEYS: Record<string, string> = {
   wechatConfig: 'nav.wechatConfig',
   channelCenter: 'nav.channelCenter',
   dataIntegration: 'nav.dataIntegration',
+  // HR & Finance
+  compensation: 'nav.compensation',
+  finance: 'nav.finance',
   // AI Marketing
   marketingPlan: 'nav.marketingPlan',
   promotionExec: 'nav.promotionExec',
@@ -213,6 +219,14 @@ const navGroups: NavGroup[] = [
       { id: 'wechatConfig', label: '微信配置', icon: MessageSquare, color: '#22c55e' },
       { id: 'channelCenter', label: '渠道中心', icon: Radio, color: '#f97316' },
       { id: 'dataIntegration', label: '数据集成', icon: Database, color: '#06b6d4' },
+    ],
+  },
+  {
+    groupKey: 'hrFinance',
+    labelKey: 'nav.group.hrFinance',
+    items: [
+      { id: 'compensation', label: '薪酬激励管理', icon: Award, color: '#8b5cf6' },
+      { id: 'finance', label: '财务管理', icon: DollarSign, color: '#22c55e' },
     ],
   },
   {
@@ -1391,6 +1405,8 @@ export function CyberpunkStandalone({ onSwitchMode }: { onSwitchMode: () => void
             {activePage === 'wechatConfig' && <WechatConfigPage />}
             {activePage === 'channelCenter' && <ChannelCenterPage />}
             {activePage === 'dataIntegration' && <DataIntegrationPage />}
+            {activePage === 'compensation' && <CompensationPage />}
+            {activePage === 'finance' && <FinancePage />}
             {/* AI Marketing modules */}
             {activePage === 'marketingPlan' && <MarketingStrategyPage />}
             {activePage === 'promotionExec' && <CampaignExecutionPage />}
